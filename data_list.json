@@ -1,0 +1,7 @@
+{
+    "graphics": [
+        "data/hwu_3070.json",
+        "data/ltt_4070s_4070ts_4080s.json",
+        "data/ltt_9070_9070xt.json"
+    ]
+}

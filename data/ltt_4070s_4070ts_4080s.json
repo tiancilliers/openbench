@@ -1,0 +1,28 @@
+{
+    "url": "https://www.youtube.com/watch?v=UZ-hwlKmAPc",
+    "class": "graphics",
+    "benchmarks": [
+        {
+            "type": "gaming-average",
+            "resolution": "1440p",
+            "raytracing": false,
+            "models": [
+                "RTX 4080 Super", "RTX 4080", "RX 7900 XT", "RTX 4070 Ti Super", "RTX 4070 Ti", "RTX 3090", "RTX 4070 Super", "RX 7800 XT", "RTX 3080", "RTX 4070", "RTX 7700 XT"
+            ],
+            "results": [
+                182, 181, 168, 160, 149, 142, 140, 133, 125, 119, 108
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "2160p",
+            "raytracing": false,
+            "models": [
+                "RTX 4080 Super", "RTX 4080", "RX 7900 XT", "RTX 4070 Ti Super", "RTX 3090", "RTX 4070 Ti", "RTX 4070 Super", "RTX 3080", "RX 7800 XT", "RTX 4070", "RTX 7700 XT"
+            ],
+            "results": [
+                124, 123, 107, 107, 99, 96, 90, 85, 82, 76, 66
+            ]
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "url": "https://www.youtube.com/watch?v=ptp5suRDdQQ",
+    "class": "graphics",
+    "benchmarks": [
+        {
+            "type": "gaming-average",
+            "resolution": "1440p",
+            "raytracing": false,
+            "models": [
+                "RTX 5080", "RX 7900 XTX", "RTX 5070 Ti", "RX 9070 XT", "RX 7900 XT", "RTX 4070 Ti Super", "RX 9070", "RX 7900 GRE", "RTX 5070", "RTX 4070 Super", "RTX 3080", "RX 6800 XT"
+            ],
+            "results": [
+                133, 123, 115, 113, 108, 104, 100, 95, 93, 89, 80, 78
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "2160p",
+            "raytracing": false,
+            "models": [
+                "RTX 5080", "RX 7900 XTX", "RTX 5070 Ti", "RX 9070 XT", "RX 7900 XT", "RTX 4070 Ti Super", "RX 9070", "RTX 5070", "RX 7900 GRE", "RTX 4070 Super", "RTX 3080", "RX 6800 XT"
+            ],
+            "results": [
+                79, 72, 68, 66, 61, 59, 58, 53, 52, 49, 46, 43
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "1440p",
+            "raytracing": true,
+            "models": [
+                "RTX 5080", "RTX 5070 Ti", "RTX 4070 Ti Super", "RTX 5070", "RX 9070 XT", "RTX 4070 Super", "RX 9070", "RX 7900 XTX", "RTX 3080","RX 7900 XT", "RX 7900 GRE",  "RX 6800 XT"
+            ],
+            "results": [
+                74, 64, 56, 48, 47, 47, 40, 40, 39, 33, 30, 23
+            ]
+        }
+    ]
+}
