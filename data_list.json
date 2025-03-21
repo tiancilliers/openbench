@@ -1,7 +1,26 @@
 {
     "graphics": [
-        "data/hwu_3070.json",
-        "data/ltt_4070s_4070ts_4080s.json",
-        "data/ltt_9070_9070xt.json"
+        {
+            "path": "data/hwu_3070.json",
+            "scale_factors": [
+                0.38770115384129145,
+                0.2928080691985261
+            ]
+        },
+        {
+            "path": "data/ltt_9070_9070xt.json",
+            "scale_factors": [
+                0.7051297740518776,
+                1.2259691829771242,
+                1.538642244770899
+            ]
+        },
+        {
+            "path": "data/ltt_4070s_4070ts_4080s.json",
+            "scale_factors": [
+                0.47024326080178974,
+                0.7137470888145343
+            ]
+        }
     ]
 }

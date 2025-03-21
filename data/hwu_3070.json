@@ -4,10 +4,10 @@
     "benchmarks": [
         {
             "type": "gaming-average",
-            "resolution": "1080p",
+            "resolution": "1440p",
             "raytracing": false,
             "models": [
-                "RTX 3090", "RTX 3080", "RTX 3070", "RTX 2080 Ti", "RTX 2080 Super", "RTX 2080", "GTX 1080 Ti", "Radeon VII", "RTX 2070 Super", "RX 5700 XT", "RX 5700", "RTX 2070", "RTX 2060 Super", "RX Vega 64", "GTX 1080", "RTX 2060", "GTX 1070", "GTX 980 Ti"
+                "GeForce RTX 3090", "GeForce RTX 3080", "GeForce RTX 3070", "GeForce RTX 2080 Ti", "GeForce RTX 2080 Super", "GeForce RTX 2080", "GeForce GTX 1080 Ti", "Radeon VII", "GeForce RTX 2070 Super", "Radeon RX 5700 XT", "Radeon RX 5700", "GeForce RTX 2070", "GeForce RTX 2060 Super", "Radeon RX Vega 64", "GeForce GTX 1080", "GeForce RTX 2060", "GeForce GTX 1070", "GeForce GTX 980 Ti"
             ],
             "results": [
                 186, 173, 141, 141, 121, 115, 108, 106, 106, 104, 92, 89, 85, 84, 80, 76, 67, 62
@@ -18,7 +18,7 @@
             "resolution": "1080p",
             "raytracing": false,
             "models": [
-                "RTX 3090", "RTX 3080", "RTX 3070", "RTX 2080 Ti", "RTX 2080 Super", "RTX 2080", "RX 5700 XT", "GTX 1080 Ti", "RTX 2070 Super", "Radeon VII", "RX 5700", "RTX 2070", "RTX 2060 Super", "RX Vega 64", "RTX 2060", "GTX 1080", "GTX 1070", "GTX 980 Ti"
+                "GeForce RTX 3090", "GeForce RTX 3080", "GeForce RTX 3070", "GeForce RTX 2080 Ti", "GeForce RTX 2080 Super", "GeForce RTX 2080", "Radeon RX 5700 XT", "GeForce GTX 1080 Ti", "GeForce RTX 2070 Super", "Radeon VII", "Radeon RX 5700", "GeForce RTX 2070", "GeForce RTX 2060 Super", "Radeon RX Vega 64", "GeForce RTX 2060", "GeForce GTX 1080", "GeForce GTX 1070", "GeForce GTX 980 Ti"
             ],
             "results": [
                 220, 211, 185, 182, 165, 157, 147, 147, 146, 144, 131, 126, 121, 117, 113, 111, 96, 88

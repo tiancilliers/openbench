@@ -30,7 +30,7 @@
             const dataList = await fetchJSON('data_list.json');
             let sources = [];
             for (let filename of dataList[filter.class]) {
-                let source = await fetchJSON(filename);
+                let source = await fetchJSON(filename.path);
                 sources.push(source);
             }
             return sources.flatMap(source => 
@@ -74,7 +74,7 @@
 
         (async function() {
             let benchmarks = await readAllBenches({ class: "graphics", subfilters: { type: "gaming-average", raytracing: false } });
-            let ranking = rankRelative(benchmarks, "RTX 5070");
+            let ranking = rankRelative(benchmarks, "GeForce RTX 5070");
             let sortedRanking = Object.entries(ranking).sort((a, b) => b[1] - a[1]);
             
             document.getElementById("loading").classList.add("hidden");
