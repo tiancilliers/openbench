@@ -7,13 +7,34 @@
 </head>
 <body class="bg-gray-100 p-6">
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
-        <h1 class="text-2xl font-bold mb-4">OpenBench (Alpha)</h1>
+        <h1 class="text-2xl font-bold mb-4">OpenBench <sup>alpha</sup></h1>
+        
+        <div class="mb-4 flex items-center justify-between">
+            <span class="font-semibold">Resolution:</span>
+            <div id="resolutionFilters" class="space-x-2 flex">
+                <button class="filter-btn selected rounded-lg px-4 py-1 bg-blue-200" data-filter="all">All</button>
+                <button class="filter-btn rounded-lg px-4 py-1" data-filter="1080p">1080p</button>
+                <button class="filter-btn rounded-lg px-4 py-1" data-filter="1440p">1440p</button>
+                <button class="filter-btn rounded-lg px-4 py-1" data-filter="2160p">2160p</button>
+            </div>
+        </div>
+        
+        <div class="mb-4 flex items-center justify-between">
+            <span class="font-semibold">Raytracing:</span>
+            <div id="raytracingFilters" class="space-x-2 flex">
+                <button class="filter-btn selected rounded-lg px-4 py-1 bg-blue-200" data-filter="both">Both</button>
+                <button class="filter-btn rounded-lg px-4 py-1" data-filter="enabled">Enabled</button>
+                <button class="filter-btn rounded-lg px-4 py-1" data-filter="disabled">Disabled</button>
+            </div>
+        </div>
+
         <div id="loading" class="text-center text-blue-500 font-semibold">Loading...</div>
         <table id="rankingTable" class="hidden w-full border-collapse border border-gray-300 mt-4">
             <thead>
                 <tr class="bg-gray-200">
                     <th class="border border-gray-300 px-4 py-2">Model</th>
-                    <th class="border border-gray-300 px-4 py-2">Score</th>
+                    <th class="border border-gray-300 px-4 py-2">BenchScore</th>
+                    <th class="border border-gray-300 px-4 py-2">% Difference</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -31,6 +52,9 @@
             let sources = [];
             for (let filename of dataList[filter.class]) {
                 let source = await fetchJSON(filename.path);
+                for (let i = 0; i < source.benchmarks.length; i++) {
+                    source.benchmarks[i].scale_factor = filename.scale_factors[i];
+                }
                 sources.push(source);
             }
             return sources.flatMap(source => 
@@ -40,7 +64,7 @@
             );
         }
 
-        function rankRelative(benchmarks, unity) {
+        function rankRelative(benchmarks) {
             let models = [...new Set(benchmarks.flatMap(bench => bench.models))];
             let benchmarkSumSq = benchmarks.map(bench => bench.results.reduce((sum, result) => sum + result ** 2, 0));
             let benchmarkDicts = benchmarks.map(bench => Object.fromEntries(bench.models.map((model, i) => [model, bench.results[i]])));
@@ -66,26 +90,91 @@
             }
             
             let svdResult = numeric.svd(solveMatr);
-            console.log(svdResult);
             let lastColIndex = svdResult.V[0].length - 1;
-            let solveRes = svdResult.V.map(row => row[lastColIndex] / svdResult.V[models.indexOf(unity)][lastColIndex]);
+            let vLastCol = svdResult.V.map(row => row[lastColIndex]);
+
+            let benchmarkKs = [];
+            let kN = 0, kD = 0;
+
+            for (let i = 0; i < benchmarks.length; i++) {
+                let benchKN = 0, benchKD = 0;
+                for (let j = 0; j < models.length; j++) {
+                    if (benchmarkMatr[j][i] !== null) {
+                        benchKN += benchmarkMatr[j][i] * vLastCol[j];
+                        benchKD += benchmarkMatr[j][i] ** 2;
+                    }
+                }
+                let benchK = benchKN / benchKD;
+                benchmarkKs.push(benchK);
+                kN += benchK * benchmarks[i].scale_factor;
+                kD += (benchKN ** 2) / (benchKD ** 2);
+            }
+
+            let overallK = kN / kD;
+            let solveRes = vLastCol.map(value => value * overallK * 100);
             return Object.fromEntries(models.map((model, i) => [model, solveRes[i]]));
         }
 
-        (async function() {
-            let benchmarks = await readAllBenches({ class: "graphics", subfilters: { type: "gaming-average", raytracing: false } });
-            let ranking = rankRelative(benchmarks, "GeForce RTX 5070");
+        const filters = {
+            resolution: "all",
+            raytracing: "both"
+        };
+
+        document.querySelectorAll(".filter-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                const group = button.parentElement.id;
+                const filterType = group === "resolutionFilters" ? "resolution" : "raytracing";
+                
+                document.querySelectorAll(`#${group} .filter-btn`).forEach(btn => btn.classList.remove("selected", "bg-blue-200"));
+                button.classList.add("selected", "bg-blue-200");
+                
+                filters[filterType] = button.dataset.filter;
+                refreshData();
+            });
+        });
+
+        async function refreshData() {
+            document.getElementById("loading").classList.remove("hidden");
+            document.getElementById("rankingTable").classList.add("hidden");
+            let tbody = document.querySelector("#rankingTable tbody");
+            tbody.innerHTML = "";
+            
+            let benchFilter = {class: "graphics", subfilters: {}};
+            if (filters.resolution !== "all") benchFilter.subfilters.resolution = filters.resolution;
+            if (filters.raytracing !== "both") benchFilter.subfilters.raytracing = filters.raytracing === "enabled";
+            let benchmarks = await readAllBenches(benchFilter);
+            let ranking = rankRelative(benchmarks);
             let sortedRanking = Object.entries(ranking).sort((a, b) => b[1] - a[1]);
             
             document.getElementById("loading").classList.add("hidden");
-            let table = document.getElementById("rankingTable");
-            table.classList.remove("hidden");
-            let tbody = table.querySelector("tbody");
+            document.getElementById("rankingTable").classList.remove("hidden");
             sortedRanking.forEach(([model, score]) => {
                 let row = document.createElement("tr");
-                row.innerHTML = `<td class="border border-gray-300 px-4 py-2">${model}</td><td class="border border-gray-300 px-4 py-2">${score.toFixed(4)}</td>`;
+                row.classList.add("cursor-pointer", "hover:bg-gray-100");
+                row.innerHTML = `<td class="border border-gray-300 px-4 py-2">${model}</td><td class="border border-gray-300 px-4 py-2">${score.toFixed(0)}</td><td class="border border-gray-300 px-4 py-2" data-diff></td>`;
+                row.dataset.score = score;
+                row.addEventListener("click", () => updateDifferences(score));
                 tbody.appendChild(row);
             });
+        }
+
+        function updateDifferences(baseScore) {
+            document.querySelectorAll("#rankingTable tbody tr").forEach(row => {
+                let score = parseInt(row.dataset.score);
+                let difference = ((score - baseScore) / baseScore * 100).toFixed(1);
+                row.querySelector("[data-diff]").classList.remove("text-green-500", "text-red-500");
+                if (Math.abs(difference) > 0.05) {
+                    row.querySelector("[data-diff]").classList.add(difference > 0 ? "text-green-500" : "text-red-500");
+                    row.querySelector("[data-diff]").textContent = difference > 0 ? `+${difference}%` : `${difference}%`;
+                } else {
+                    row.querySelector("[data-diff]").textContent = "0.0%";
+                } 
+                
+            });
+        }
+        
+        (async function() {
+            refreshData();
         })();
     </script>
 </body>
