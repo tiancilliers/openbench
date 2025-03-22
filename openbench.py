@@ -78,7 +78,7 @@ def update_data_list():
     with open('data_list.json', 'w') as f:
         json.dump(new_data_list, f, indent=4)
 
-#update_data_list()
+update_data_list()
 
 benchmarks = read_all_benches({"class":"graphics","subfilters":{}})
 scores, bench_ks = rank_relative(benchmarks)
