@@ -1,0 +1,50 @@
+{
+    "url": "https://www.youtube.com/watch?v=UFAfOqTzc18",
+    "class": "graphics",
+    "benchmarks": [
+        {
+            "type": "gaming-average",
+            "resolution": "1440p",
+            "raytracing": false,
+            "models": [
+                "GeForce RTX 5090", "GeForce RTX 4090", "Radeon RX 7900 XTX", "GeForce RTX 4080 Super", "Radeon RX 7900 XT", "GeForce RTX 3090 Ti", "GeForce RTX 3090", "GeForce RTX 3080", "GeForce RTX 2080 Ti", "Arc B580", "GeForce GTX 1080 Ti"
+            ],
+            "results": [
+                181, 153, 124, 119, 109, 98, 92, 81, 59, 52, 38
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "2160p",
+            "raytracing": false,
+            "models": [
+                "GeForce RTX 5090", "GeForce RTX 4090", "Radeon RX 7900 XTX", "GeForce RTX 4080 Super", "Radeon RX 7900 XT", "GeForce RTX 3090 Ti", "GeForce RTX 3090", "GeForce RTX 3080", "GeForce RTX 2080 Ti", "Arc B580", "GeForce GTX 1080 Ti"
+            ],
+            "results": [
+                118, 92, 71, 68, 61, 58, 54, 46, 33, 29, 21
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "1440p",
+            "raytracing": true,
+            "models": [
+                "GeForce RTX 5090", "GeForce RTX 4090", "GeForce RTX 4080 Super", "GeForce RTX 3090 Ti", "GeForce RTX 3090", "GeForce RTX 3080", "Radeon RX 7900 XTX", "Radeon RX 7900 XT", "GeForce RTX 2080 Ti", "Arc B580"
+            ],
+            "results": [
+                111, 88, 66, 48, 45, 39, 38, 33, 25, 20
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "2160p",
+            "raytracing": true,
+            "models": [
+                "GeForce RTX 5090", "GeForce RTX 4090", "GeForce RTX 4080 Super", "GeForce RTX 3090 Ti", "GeForce RTX 3090", "GeForce RTX 3080", "Radeon RX 7900 XTX", "Radeon RX 7900 XT", "GeForce RTX 2080 Ti", "Arc B580"
+            ],
+            "results": [
+                63, 48, 34, 25, 23, 21, 19, 17, 14, 11
+            ]
+        }
+    ]
+}

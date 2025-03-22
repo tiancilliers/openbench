@@ -3,6 +3,9 @@ import json
 import os
 
 def rank_relative(benchmarks):
+    for bench in benchmarks:
+        print(bench)
+        print()
     models = list(set(model for bench in benchmarks for model in bench['models']))
     benchmark_sum_sq = [sum(result**2 for result in bench['results']) for bench in benchmarks]
     benchmark_dicts = [{model:result for model,result in zip(bench['models'],bench['results'])} for bench in benchmarks]
@@ -75,9 +78,9 @@ def update_data_list():
     with open('data_list.json', 'w') as f:
         json.dump(new_data_list, f, indent=4)
 
+#update_data_list()
+
 benchmarks = read_all_benches({"class":"graphics","subfilters":{}})
 scores, bench_ks = rank_relative(benchmarks)
 for model, score in sorted(scores.items(), key=lambda x: x[1], reverse=True):
     print(f"{model:<30} {score:6.0f}")
-
-#update_data_list()

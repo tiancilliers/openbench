@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>OpenBench (Alpha)</title>
+    <title>OpenBench</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -10,21 +10,21 @@
         <h1 class="text-2xl font-bold mb-4">OpenBench <sup>alpha</sup></h1>
         
         <div class="mb-4 flex items-center justify-between">
-            <span class="font-semibold">Resolution:</span>
-            <div id="resolutionFilters" class="space-x-2 flex">
-                <button class="filter-btn selected rounded-lg px-4 py-1 bg-blue-200" data-filter="all">All</button>
+            <span class="font-semibold">Resolution</span>
+            <div id="resolutionFilters" class="space-x-2 flex bg-gray-100 rounded-lg">
                 <button class="filter-btn rounded-lg px-4 py-1" data-filter="1080p">1080p</button>
                 <button class="filter-btn rounded-lg px-4 py-1" data-filter="1440p">1440p</button>
                 <button class="filter-btn rounded-lg px-4 py-1" data-filter="2160p">2160p</button>
+                <button class="filter-btn selected rounded-lg px-4 py-1 bg-blue-200" data-filter="all">Combined</button>
             </div>
         </div>
         
         <div class="mb-4 flex items-center justify-between">
-            <span class="font-semibold">Raytracing:</span>
-            <div id="raytracingFilters" class="space-x-2 flex">
-                <button class="filter-btn selected rounded-lg px-4 py-1 bg-blue-200" data-filter="both">Both</button>
+            <span class="font-semibold">Raytracing</span>
+            <div id="raytracingFilters" class="space-x-2 flex bg-gray-100 rounded-lg">
                 <button class="filter-btn rounded-lg px-4 py-1" data-filter="enabled">Enabled</button>
                 <button class="filter-btn rounded-lg px-4 py-1" data-filter="disabled">Disabled</button>
+                <button class="filter-btn selected rounded-lg px-4 py-1 bg-blue-200" data-filter="both">Combined</button>
             </div>
         </div>
 
@@ -39,11 +39,27 @@
             </thead>
             <tbody></tbody>
         </table>
+
+        <div class="mt-4 text-xs text-gray-500 text-center">Click on a row to see the % difference in BenchScore compared to the selected model.</div>
+        
+        <div class="mt-4">
+            <h2 class="text-xl font-semibold mb-2">Sources</h2>
+            <ul class="list-disc list-inside">
+                <li><a href="https://example.com/source1" class="text-blue-500 hover:underline">Source 1</a></li>
+                <li><a href="https://example.com/source2" class="text-blue-500 hover:underline">Source 2</a></li>
+                <li><a href="https://example.com/source3" class="text-blue-500 hover:underline">Source 3</a></li>
+            </ul>
+        </div>
     </div>
     
-    <script>
+ </div>   <script>
         async function fetchJSON(file) {
-            const response = await fetch(file);
+            const response = await fetch(file, {
+                method: "GET",
+                headers: {
+                    "Cache-Control": "no-cache"
+                }
+            });
             return response.json();
         }
 
@@ -57,11 +73,13 @@
                 }
                 sources.push(source);
             }
-            return sources.flatMap(source => 
-                source.class === filter.class ? source.benchmarks.filter(bench => 
-                    Object.entries(filter.subfilters).every(([key, value]) => bench[key] === value)
-                ) : []
-            );
+            return {
+                benches: sources.flatMap(source => 
+                    source.class === filter.class ? source.benchmarks.filter(bench => 
+                        Object.entries(filter.subfilters).every(([key, value]) => bench[key] === value)
+                    ) : []),
+                urls: sources.map(source => source.url)
+            };
         }
 
         function rankRelative(benchmarks) {
@@ -120,6 +138,8 @@
             raytracing: "both"
         };
 
+        let focusedModel = "";
+
         document.querySelectorAll(".filter-btn").forEach(button => {
             button.addEventListener("click", () => {
                 const group = button.parentElement.id;
@@ -136,29 +156,62 @@
         async function refreshData() {
             document.getElementById("loading").classList.remove("hidden");
             document.getElementById("rankingTable").classList.add("hidden");
+            document.getElementById("loading").textContent = "Loading...";
             let tbody = document.querySelector("#rankingTable tbody");
             tbody.innerHTML = "";
             
             let benchFilter = {class: "graphics", subfilters: {}};
             if (filters.resolution !== "all") benchFilter.subfilters.resolution = filters.resolution;
             if (filters.raytracing !== "both") benchFilter.subfilters.raytracing = filters.raytracing === "enabled";
-            let benchmarks = await readAllBenches(benchFilter);
-            let ranking = rankRelative(benchmarks);
-            let sortedRanking = Object.entries(ranking).sort((a, b) => b[1] - a[1]);
-            
-            document.getElementById("loading").classList.add("hidden");
-            document.getElementById("rankingTable").classList.remove("hidden");
-            sortedRanking.forEach(([model, score]) => {
-                let row = document.createElement("tr");
-                row.classList.add("cursor-pointer", "hover:bg-gray-100");
-                row.innerHTML = `<td class="border border-gray-300 px-4 py-2">${model}</td><td class="border border-gray-300 px-4 py-2">${score.toFixed(0)}</td><td class="border border-gray-300 px-4 py-2" data-diff></td>`;
-                row.dataset.score = score;
-                row.addEventListener("click", () => updateDifferences(score));
-                tbody.appendChild(row);
+            let benchmarksData = await readAllBenches(benchFilter);
+            let benchmarks = benchmarksData.benches;
+            let urls = benchmarksData.urls;
+            let sourcesList = document.querySelector(".mt-4 ul");
+            sourcesList.innerHTML = "";
+            urls.forEach(url => {
+                let listItem = document.createElement("li");
+                let link = document.createElement("a");
+                link.href = url;
+                link.textContent = url;
+                link.classList.add("text-blue-500", "hover:underline");
+                listItem.appendChild(link);
+                sourcesList.appendChild(listItem);
             });
+            if (benchmarks.length === 0) {
+                document.getElementById("loading").textContent = "No data available for selected filters.";
+                return;
+            } else {
+                let ranking = rankRelative(benchmarks);
+                let sortedRanking = Object.entries(ranking).sort((a, b) => b[1] - a[1]);
+                
+                document.getElementById("loading").classList.add("hidden");
+                document.getElementById("rankingTable").classList.remove("hidden");
+                sortedRanking.forEach(([model, score]) => {
+                    let row = document.createElement("tr");
+                    row.classList.add("cursor-pointer", "hover:bg-gray-100");
+                    row.innerHTML = `<td class="border border-gray-300 px-4 py-2">${model}</td><td class="border border-gray-300 px-4 py-2">${score.toFixed(0)}</td><td class="border border-gray-300 px-4 py-2" data-diff></td>`;
+                    row.dataset.score = score;
+                    row.dataset.model = model;
+                    row.addEventListener("click", () => updateDifferences(model));
+                    tbody.appendChild(row);
+                });
+                if (focusedModel !== "") {
+                    updateDifferences(focusedModel);
+                }
+            }
         }
 
-        function updateDifferences(baseScore) {
+        function updateDifferences(baseModel) {
+            focusedModel = baseModel;
+            let baseRow = Array.from(document.querySelectorAll("#rankingTable tbody tr")).find(row => row.dataset.model === baseModel);
+            if (!baseRow) {
+                document.querySelectorAll("#rankingTable tbody tr [data-diff]").forEach(cell => {
+                    cell.textContent = "";
+                    cell.classList.remove("text-green-500", "text-red-500");
+                });
+                return;
+            }
+            let baseScore = parseInt(baseRow.dataset.score);
             document.querySelectorAll("#rankingTable tbody tr").forEach(row => {
                 let score = parseInt(row.dataset.score);
                 let difference = ((score - baseScore) / baseScore * 100).toFixed(1);
@@ -169,7 +222,6 @@
                 } else {
                     row.querySelector("[data-diff]").textContent = "0.0%";
                 } 
-                
             });
         }
         

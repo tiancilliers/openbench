@@ -23,6 +23,17 @@
             "results": [
                 220, 211, 185, 182, 165, 157, 147, 147, 146, 144, 131, 126, 121, 117, 113, 111, 96, 88
             ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "2160p",
+            "raytracing": false,
+            "models": [
+                "GeForce RTX 3090", "GeForce RTX 3080", "GeForce RTX 2080 Ti", "GeForce RTX 3070", "GeForce RTX 2080 Super", "GeForce RTX 2080", "GeForce GTX 1080 Ti", "Radeon VII", "GeForce RTX 2070 Super", "Radeon RX 5700 XT", "GeForce RTX 2070", "Radeon RX 5700", "GeForce RTX 2060 Super", "Radeon RX Vega 64", "GeForce GTX 1080", "GeForce RTX 2060", "GeForce GTX 1070", "GeForce GTX 980 Ti"
+            ],
+            "results": [
+                120, 109, 82, 80, 67, 63, 61, 60, 58, 54, 49, 48, 47, 46, 43, 39, 36, 33
+            ]
         }
     ]
 }

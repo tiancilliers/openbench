@@ -34,6 +34,28 @@
             "results": [
                 74, 64, 56, 48, 47, 47, 40, 40, 39, 33, 30, 23
             ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "1080p",
+            "raytracing": true,
+            "models": [
+                "GeForce RTX 5080", "GeForce RTX 5070 Ti", "GeForce RTX 4070 Ti Super", "GeForce RTX 5070", "Radeon RX 9070 XT", "GeForce RTX 4070 Super", "Radeon RX 9070", "Radeon RX 7900 XTX", "GeForce RTX 3080", "Radeon RX 7900 XT", "Radeon RX 7900 GRE",  "Radeon RX 6800 XT"
+            ],
+            "results": [
+                106, 93, 84, 72, 71, 71, 61, 59, 58, 52, 46, 36
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "1080p",
+            "raytracing": false,
+            "models": [
+                "GeForce RTX 5080", "Radeon RX 7900 XTX", "GeForce RTX 5070 Ti", "Radeon RX 9070 XT", "Radeon RX 7900 XT", "GeForce RTX 4070 Ti Super", "Radeon RX 9070", "Radeon RX 7900 GRE", "GeForce RTX 5070", "GeForce RTX 4070 Super", "Radeon RX 6800 XT", "GeForce RTX 3080"
+            ],
+            "results": [
+                170, 163, 154, 150, 145, 141, 134, 129, 127, 125, 109, 108
+            ]
         }
     ]
 }
