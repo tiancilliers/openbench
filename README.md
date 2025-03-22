@@ -16,7 +16,7 @@ Access the OpenBench rankings [here](https://tiancilliers.github.io/openbench).
 For more advanced use, use the `openbench.py` program. This contains the same algorithm, and a usage guide will be added in the future.
 
 ## How to contribute
-Add benchmark results to the `data/` directory, following the existing formatting, and submit a pull request.
+Add benchmark results to the `data/` directory, following the existing formatting, run `update_data_list()` in `openbench.py` and submit a pull request.
 
 > [!IMPORTANT]  
-> Do not modify the `data_list.json` file manually. This file contains the parameters needed for the correct BenchScore scaling, and needs to be updated via the correct algorithm to avoid scores fluctuating.
+> Do not modify the `data_list.json` file manually. This file contains the parameters needed for the correct BenchScore scaling, and needs to be updated via `update_data_list()` to avoid scores fluctuating.
