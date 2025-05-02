@@ -1,0 +1,50 @@
+{
+    "url": "https://www.youtube.com/watch?v=Lcb1dpe2IhE",
+    "class": "graphics",
+    "benchmarks": [
+        {
+            "type": "gaming-average",
+            "resolution": "1080p",
+            "raytracing": false,
+            "models": [
+                "GeForce RTX 4070", "Radeon RX 7700 XT", "Radeon RX 6800", "GeForce RTX 4060 Ti 16GB", "GeForce RTX 3070", "GeForce RTX 4060 Ti 8GB", "Radeon RX 6700 XT", "GeForce RTX 3060 Ti", "Radeon RX 7600 XT", "GeForce RTX 4060", "Radeon RX 7600", "Radeon RX 6650 XT", "Arc A770 16GB", "GeForce RTX 3060", "Radeon RX 6600", "GeForce RTX 2070", "Arc A750", "GeForce RTX 2060"
+            ],
+            "results": [
+                145, 127, 127, 115, 113, 111, 105, 102, 95, 90, 88, 85, 82, 80, 73, 73, 72, 61
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "1440p",
+            "raytracing": false,
+            "models": [
+                "GeForce RTX 4070", "Radeon RX 6800", "Radeon RX 7700 XT", "GeForce RTX 3070", "GeForce RTX 4060 Ti 16GB", "GeForce RTX 4060 Ti 8GB", "Radeon RX 6700 XT", "GeForce RTX 3060 Ti", "Radeon RX 7600 XT", "Radeon RX 7600", "Arc A770 16GB", "GeForce RTX 4060", "Radeon RX 6650 XT", "GeForce RTX 3060", "Arc A750", "GeForce RTX 2070", "Radeon RX 6600", "GeForce RTX 2060"
+            ],
+            "results": [
+                105, 94, 92, 82, 81, 79, 76, 75, 67, 64, 63, 62, 59, 58, 55, 53, 49, 40
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "2160p",
+            "raytracing": false,
+            "models": [
+                "GeForce RTX 4070", "Radeon RX 6800", "Radeon RX 7700 XT", "GeForce RTX 4060 Ti 16GB", "Radeon RX 6700 XT", "GeForce RTX 3070", "GeForce RTX 4060 Ti 8GB", "Radeon RX 7600 XT", "GeForce RTX 3060 Ti", "Arc A770 16GB", "Radeon RX 7600", "Radeon RX 6650 XT", "GeForce RTX 3060", "Arc A750", "GeForce RTX 4060", "GeForce RTX 2070", "Radeon RX 6600", "GeForce RTX 2060"
+            ],
+            "results": [
+                59, 55, 53, 45, 42, 42, 38, 37, 37, 36, 34, 34, 32, 31, 30, 26, 26, 21
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "1080p",
+            "raytracing": true,
+            "models": [
+                "GeForce RTX 4070", "GeForce RTX 4060 Ti 16GB", "Radeon RX 7700 XT", "GeForce RTX 4060 Ti 8GB", "Radeon RX 6700 XT", "GeForce RTX 4060", "Arc A770 16GB", "Radeon RX 7600 XT", "Arc A750", "Radeon RX 7600"
+            ],
+            "results": [
+                105, 80, 77, 72, 61, 59, 57, 52, 48, 40
+            ]
+        }
+    ]
+}
