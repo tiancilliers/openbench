@@ -27,7 +27,7 @@
         {
             "type": "gaming-average",
             "resolution": "1440p",
-            "raytracing": false,
+            "raytracing": true,
             "models": [
                 "GeForce RTX 5080", "GeForce RTX 4080 Super", "GeForce RTX 4080", "GeForce RTX 5070 Ti", "GeForce RTX 4070 Ti Super", "GeForce RTX 4070 Ti", "Radeon RX 9070 XT", "GeForce RTX 5070", "GeForce RTX 4070 Super", "GeForce RTX 5060 Ti 16GB", "Radeon RX 9070", "GeForce RTX 4070", "Radeon RX 7900 XTX", "GeForce RTX 4060 Ti 16GB", "Radeon RX 7900 XT", "Radeon RX 7900 GRE", "GeForce RTX 4060", "Radeon RX 7700 XT", "Radeon RX 7800 XT"
             ],
@@ -38,7 +38,7 @@
         {
             "type": "gaming-average",
             "resolution": "2160p",
-            "raytracing": false,
+            "raytracing": true,
             "models": [
                 "GeForce RTX 5080", "GeForce RTX 4080 Super", "GeForce RTX 4080", "GeForce RTX 5070 Ti", "GeForce RTX 4070 Ti Super", "Radeon RX 9070 XT", "GeForce RTX 5060 Ti 16GB", "GeForce RTX 4070 Ti", "Radeon RX 7900 XTX", "GeForce RTX 5070", "GeForce RTX 4070 Super", "GeForce RTX 4060 Ti 16GB", "Radeon RX 9070", "Radeon RX 7900 XT", "GeForce RTX 4070", "Radeon RX 7900 GRE", "Radeon RX 7800 XT", "Radeon RX 7700 XT", "GeForce RTX 4060"
             ],
