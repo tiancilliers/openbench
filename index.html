@@ -173,7 +173,7 @@
             let benchFilter = {class: "graphics", subfilters: {}};
             if (filters.resolution !== "all") benchFilter.subfilters.resolution = filters.resolution;
             if (filters.raytracing !== "both") benchFilter.subfilters.raytracing = filters.raytracing === "enabled";
-            if (filters.resolution !== "both") benchFilter.subfilters.type = filters.type;
+            if (filters.type !== "both") benchFilter.subfilters.type = filters.type;
             let benchmarksData = await readAllBenches(benchFilter);
             let benchmarks = benchmarksData.benches;
             let urls = benchmarksData.urls;
