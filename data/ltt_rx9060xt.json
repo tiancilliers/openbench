@@ -1,0 +1,72 @@
+{
+    "url": "https://www.youtube.com/watch?v=j6yHMCTb-YA",
+    "class": "graphics",
+    "benchmarks": [
+        {
+            "type": "gaming-average",
+            "resolution": "1080p",
+            "raytracing": false,
+            "models": [
+                "Radeon RX 9070 XT", "Radeon RX 9070", "GeForce RTX 5060 Ti 8GB", "GeForce RTX 5060 Ti 16GB", "Radeon RX 9060 XT 16GB", "GeForce RTX 5060", "GeForce RTX 4060 Ti 8GB", "Arc B580", "Radeon RX 7600 XT", "Radeon RX 7600", "GeForce RTX 3060"
+            ],
+            "results": [
+                151, 135, 98, 98, 95, 84, 82, 75, 70, 67, 57
+            ]
+        },
+        {
+            "type": "gaming-1percent",
+            "resolution": "1080p",
+            "raytracing": false,
+            "models": [
+                "Radeon RX 9070 XT", "Radeon RX 9070", "GeForce RTX 5060 Ti 8GB", "GeForce RTX 5060 Ti 16GB", "Radeon RX 9060 XT 16GB", "GeForce RTX 5060", "GeForce RTX 4060 Ti 8GB", "Arc B580", "Radeon RX 7600 XT", "Radeon RX 7600", "GeForce RTX 3060"
+            ],
+            "results": [
+                121, 109, 80, 79, 78, 68, 67, 59, 58, 55, 46
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "1440p",
+            "raytracing": false,
+            "models": [
+                "Radeon RX 9070 XT", "Radeon RX 9070", "GeForce RTX 5060 Ti 8GB", "GeForce RTX 5060 Ti 16GB", "Radeon RX 9060 XT 16GB", "GeForce RTX 5060", "GeForce RTX 4060 Ti 8GB", "Arc B580", "Radeon RX 7600 XT", "Radeon RX 7600", "GeForce RTX 3060"
+            ],
+            "results": [
+                113, 100, 71, 70, 68, 60, 58, 53, 49, 43, 40
+            ]
+        },
+        {
+            "type": "gaming-1percent",
+            "resolution": "1440p",
+            "raytracing": false,
+            "models": [
+                "Radeon RX 9070 XT", "Radeon RX 9070", "GeForce RTX 5060 Ti 8GB", "GeForce RTX 5060 Ti 16GB", "Radeon RX 9060 XT 16GB", "GeForce RTX 5060", "GeForce RTX 4060 Ti 8GB", "Arc B580", "Radeon RX 7600 XT", "Radeon RX 7600", "GeForce RTX 3060"
+            ],
+            "results": [
+                93, 81, 58, 58, 58, 50, 48, 43, 42, 35, 33
+            ]
+        },
+        {
+            "type": "gaming-average",
+            "resolution": "1080p",
+            "raytracing": true,
+            "models": [
+                "Radeon RX 9070 XT", "Radeon RX 9070", "GeForce RTX 5060 Ti 16GB", "GeForce RTX 5060 Ti 8GB", "Radeon RX 9060 XT 16GB", "GeForce RTX 4060 Ti 8GB", "GeForce RTX 5060", "Arc B580", "GeForce RTX 3060", "Radeon RX 7600", "Radeon RX 7600 XT"
+            ],
+            "results": [
+                94, 82, 64, 64, 57, 55, 54, 46, 36, 37, 33
+            ]
+        },
+        {
+            "type": "gaming-1percent",
+            "resolution": "1080p",
+            "raytracing": true,
+            "models": [
+                "Radeon RX 9070 XT", "Radeon RX 9070", "GeForce RTX 5060 Ti 16GB", "GeForce RTX 5060 Ti 8GB", "Radeon RX 9060 XT 16GB", "GeForce RTX 4060 Ti 8GB", "GeForce RTX 5060", "Arc B580", "GeForce RTX 3060", "Radeon RX 7600", "Radeon RX 7600 XT"
+            ],
+            "results": [
+                79, 68, 52, 51, 47, 45, 44, 38, 28, 27, 27
+            ]
+        }
+    ]
+}
