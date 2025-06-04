@@ -7,8 +7,8 @@ OpenBench takes as input a set of benchmarks, each giving some performance metri
 OpenBench then scales the relative ranking of all models in a way that minimizes the change of existing models when new benchmarks are added. While slightly arbitrary, this allows the use of the BenchScore as a performance number that should not change as new, higher-performing, models are added. The vision for this is that retailers can use this database to provide accurate and stable performance estimates to their customers.
 
 ### TLDR
-* The ratio between scores of different models is as accurate as possible
-* The absolute scores change as little as possible when new benchmarks are added
+* The ratio between scores of different models is as accurate as possible.
+* The absolute scores change as little as possible when new benchmarks are added.
 
 ## How to use
 Access the OpenBench rankings [here](https://tiancilliers.github.io/openbench).
